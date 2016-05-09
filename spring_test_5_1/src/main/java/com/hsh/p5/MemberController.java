@@ -1,6 +1,7 @@
 package com.hsh.p5;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -21,36 +22,35 @@ public class MemberController {
 	public void joinF(){ }
 	@RequestMapping("join.me")
 	public String getJoin(MemberDTO memberDTO,Model model){
-		memberService.s_join(memberDTO);
-		model.addAttribute("message", "회원가입 완료");
+		memberService.s_join(memberDTO,model);
 		return "member/join";
 	}
 	
 	@RequestMapping("loginF.me")
 	public void loginF(){ }
 	@RequestMapping("login.me")
-	public String login(MemberDTO memberDTO){
-		
+	public String login(MemberDTO memberDTO,HttpServletRequest request){
+		memberService.s_login(memberDTO, request);
 		return "redirect:/";
 	}
 	
 	@RequestMapping("logout.me")
-	public String logout(HttpSession session){
-		session.invalidate();
+	public String logout(HttpServletRequest request){
+		memberService.s_logout(request);
 		return "redirect:/";
 	}
 	
 	@RequestMapping("updateF.me")
 	public void updateF(){ }
 	@RequestMapping("update.me")
-	public String update(MemberDTO memberDTO){
-		
+	public String update(MemberDTO memberDTO,HttpServletRequest request){
+		memberService.s_update(memberDTO, request);
 		return "redirect:/";
 	}
 	
 	@RequestMapping("delete.me")
-	public String delete(HttpSession session){
-		
+	public String delete(HttpServletRequest request){
+		memberService.s_delete(request);
 		return "redirect:/";
 	}
 	

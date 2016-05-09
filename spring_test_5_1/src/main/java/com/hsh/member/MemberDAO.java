@@ -11,8 +11,9 @@ public interface MemberDAO {
 	public MemberDTO login(MemberDTO memberDTO) throws SQLException;
 	
 	//정보수정
+	public MemberDTO update(MemberDTO memberDTO) throws SQLException;
 	
 	//회원탈퇴
-	
+	public int delete(MemberDTO memberDTO) throws SQLException;
 	
 }

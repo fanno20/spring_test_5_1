@@ -14,6 +14,6 @@
 	NAME : <input type="text" name="name"><br>
 	<input type="submit" value="회원가입"><br>
 </form>
-<a href="/p5">HOME</a>
+<a href="/p5/">HOME</a>
 </body>
 </html>
