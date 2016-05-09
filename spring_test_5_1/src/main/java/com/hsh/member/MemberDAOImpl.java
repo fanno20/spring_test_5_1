@@ -4,17 +4,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import javax.inject.Inject;
 import javax.sql.DataSource;
 
-import org.springframework.stereotype.Repository;
-
-@Repository
 public class MemberDAOImpl implements MemberDAO {
 
-	@Inject
 	private DataSource dataSource;
 	
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+	
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
+
 	//회원가입
 	@Override
 	public void join(MemberDTO memberDTO) throws SQLException {

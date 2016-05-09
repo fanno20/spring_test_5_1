@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hsh.member.MemberDTO;
@@ -14,14 +15,15 @@ import com.hsh.member.MemberService;
 public class MemberController {
 
 	@Inject
-	private MemberService service;
+	private MemberService memberService;
 	
-	@RequestMapping("/joinF.me")
+	@RequestMapping("joinF.me")
 	public void joinF(){ }
-	@RequestMapping("/join.me")
-	public String getJoin(MemberDTO memberDTO){
-		service.s_join(memberDTO);
-		return "redirect:/";
+	@RequestMapping("join.me")
+	public String getJoin(MemberDTO memberDTO,Model model){
+		memberService.s_join(memberDTO);
+		model.addAttribute("message", "회원가입 완료");
+		return "member/join";
 	}
 	
 	@RequestMapping("loginF.me")

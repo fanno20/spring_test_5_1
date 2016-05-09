@@ -12,5 +12,6 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+<a href="./member/joinF.me">회원가입</a><br>
 </body>
 </html>

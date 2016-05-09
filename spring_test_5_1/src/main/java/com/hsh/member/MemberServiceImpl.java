@@ -2,15 +2,21 @@ package com.hsh.member;
 
 import java.sql.SQLException;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
-
+/*@Service*/
 public class MemberServiceImpl implements MemberService {
 
-	@Inject
 	private MemberDAO memberDAO;
 	
+	public MemberDAO getMemberDAO() {
+		return memberDAO;
+	}
+
+	public void setMemberDAO(MemberDAO memberDAO) {
+		this.memberDAO = memberDAO;
+	}
+
 	//회원가입
 	@Override
 	public void s_join(MemberDTO memberDTO) {
