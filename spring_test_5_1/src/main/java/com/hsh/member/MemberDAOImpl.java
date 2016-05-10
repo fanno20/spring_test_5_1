@@ -42,7 +42,9 @@ public class MemberDAOImpl implements MemberDAO {
 		st.setString(1, memberDTO.getId());
 		st.setString(2, memberDTO.getPw());
 		ResultSet rs = st.executeQuery();
-		if(!rs.next()){
+		if(rs.next()){
+			memberDTO.setName(rs.getString("name"));
+		}else{
 			memberDTO = null;
 		}
 		st.close();

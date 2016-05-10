@@ -37,11 +37,10 @@ public class MemberServiceImpl implements MemberService {
 
 	//로그인
 	@Override
-	public void s_login(MemberDTO memberDTO, HttpServletRequest request) {
+	public void s_login(MemberDTO memberDTO, HttpSession session) {
 		try {
 			memberDTO = memberDAO.login(memberDTO);
 			if(memberDTO != null){
-				HttpSession session = request.getSession();
 				session.setAttribute("member", memberDTO);
 			}
 		} catch (SQLException e) {
@@ -76,13 +75,6 @@ public class MemberServiceImpl implements MemberService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-
-	//로그아웃
-	@Override
-	public void s_logout(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		session.invalidate();
 	}
 
 }

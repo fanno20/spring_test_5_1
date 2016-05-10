@@ -1,6 +1,7 @@
 package com.hsh.member;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
@@ -10,10 +11,8 @@ public interface MemberService {
 	public void s_join(MemberDTO memberDTO,Model model);
 	
 	//로그인
-	public void s_login(MemberDTO memberDTO,HttpServletRequest request);
+	public void s_login(MemberDTO memberDTO,HttpSession session);
 	
-	//로그아웃
-	public void s_logout(HttpServletRequest request);
 	
 	//회원정보수정
 	public void s_update(MemberDTO memberDTO,HttpServletRequest request);

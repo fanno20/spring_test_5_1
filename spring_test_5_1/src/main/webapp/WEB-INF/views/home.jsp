@@ -17,9 +17,14 @@
 	<a href="./member/loginF.me">LOGIN</a><br>
 </c:if>
 <c:if test="${member ne null}">
+	<script type="text/javascript">
+		alert('${result}');
+	</script>
+	<h2>${member.name}님 접속</h2>
 	<a href="./member/updateF.me">정보수정</a><br>
 	<a href="./member/logout.me">LOGOUT</a><br>
 	<a href="./member/delete.me">회원탈퇴</a><br>
 </c:if>
+<a href="./board/list?curPage=1">글목록보기</a><br>
 </body>
 </html>

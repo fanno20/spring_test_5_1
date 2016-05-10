@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hsh.member.MemberDTO;
 import com.hsh.member.MemberService;
@@ -29,14 +30,15 @@ public class MemberController {
 	@RequestMapping("loginF.me")
 	public void loginF(){ }
 	@RequestMapping("login.me")
-	public String login(MemberDTO memberDTO,HttpServletRequest request){
-		memberService.s_login(memberDTO, request);
+	public String login(MemberDTO memberDTO,HttpSession session,Model model, RedirectAttributes redirectAttributes){
+		memberService.s_login(memberDTO, session);
+		redirectAttributes.addFlashAttribute("result", "로그인성공");
 		return "redirect:/";
 	}
 	
 	@RequestMapping("logout.me")
-	public String logout(HttpServletRequest request){
-		memberService.s_logout(request);
+	public String logout(HttpSession session){
+		session.invalidate();
 		return "redirect:/";
 	}
 	
