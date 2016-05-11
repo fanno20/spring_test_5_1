@@ -29,19 +29,27 @@
 		$("#writeBtn").click(function(){
 			location.href = "./writeF";
 		});
+		$("#chPerPage").change(function(){
+			if(this.value != 0){
+				location.href = "./list?curPage=1&perPage="+this.value;
+			} 
+		});
 	})
 </script>
 </head>
 <body>
 
-<select name="perPae">
-	<option value="20">20개씩 보기</option>
-	<option value="30">30개씩 보기</option>
-	<option value="40">40개씩 보기</option>
-</select>
+
 
 <div class="d1">
 	<p>NOTICE BOARD LIST PAGE</p>
+	<select name="perPage" id="chPerPage">
+		<option value="0" selected>선택</option>
+		<option value="10">10개씩 보기</option>
+		<option value="20">20개씩 보기</option>
+		<option value="30">30개씩 보기</option>
+		<option value="40">40개씩 보기</option>
+	</select>
 	<table class="table">
 		<tr><td>num</td><td>title</td><td>writer</td><td>reg_date</td></tr>
 		<c:forEach items="${list}" var="dto">
@@ -64,13 +72,13 @@
 			<a href="./list?curPage=${page['last']+1}">이후</a>
 		</c:if> --%>
 		<c:if test="${boardPageing.curBlock > 1}">
-			<a href="./list?curPage=${boardPageing.startNum-1}">[이전]</a>
+			<a href="./list?curPage=${boardPageing.startNum-1}&perPage=${perPage}">[이전]</a>
 		</c:if>
 		<c:forEach begin="${boardPageing.startNum}" end="${boardPageing.lastNum}" var="i">
-			<a href="./list?curPage=${i}">${i}</a>
+			<a href="./list?curPage=${i}&perPage=${perPage}">${i}</a>
 		</c:forEach>
 		<c:if test="${boardPageing.curBlock < boardPageing.totalBlock}">
-			<a href="./list?curPage=${boardPageing.lastNum+1}">[다음]</a>
+			<a href="./list?curPage=${boardPageing.lastNum+1}&perPage=${perPage}">[다음]</a>
 		</c:if>
 		<c:if test="${member ne null}">
 			<input type="button" value="글쓰기" class="btn-default" id="writeBtn">

@@ -4,3 +4,5 @@ select * from FREEBOARD
 select * from NOTICE_BOARD
 select * from NOTICE_SEQ
 select * from member2
+
+create table 

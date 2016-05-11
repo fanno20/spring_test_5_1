@@ -14,12 +14,33 @@ public class BoardServiceImpl implements BoardService {
 
 	@Inject
 	private BoardDAO boarDAO;
-	
+	/*
 	private final int perPage = 10;
-	
+	public void s_list(int curPage, Model model) {
+		int startNum = (curPage-1)* perPage + 1;
+		int lastNum = perPage * curPage;
+		
+		try {
+			List<BoardDTO> list = boarDAO.list(startNum, lastNum);
+			model.addAttribute("list", list);
+			
+			Hashtable<String, Integer> page = new Hashtable<>();
+			page = boarDAO.getPage(curPage);
+			model.addAttribute("page", page);
+			
+			//DAO 총카운트 조회
+			int total = boarDAO.getTotal();
+			BoardPageing bp = new BoardPageing();
+			bp.setMember(curPage, perPage, total);
+			model.addAttribute(bp);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}*/
 	//글목록
 	@Override
-	public void s_list(int curPage, Model model) {
+	public void s_list(int curPage, Model model,int perPage) {
 		int startNum = (curPage-1)* perPage + 1;
 		int lastNum = perPage * curPage;
 		
@@ -36,12 +57,12 @@ public class BoardServiceImpl implements BoardService {
 			BoardPageing bp = new BoardPageing();
 			bp.setMember(curPage, perPage, total);
 			model.addAttribute(bp);
+			model.addAttribute("perPage", perPage);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 	}
-	
 
 	//글한개보기
 	@Override
@@ -56,6 +77,34 @@ public class BoardServiceImpl implements BoardService {
 		}
 	}
 
+	//jsonTest
+	public List<BoardDTO> j_view(int num){/*BoardDTO*/
+		List<BoardDTO> ar = null;
+		/*BoardDTO bdDto = new BoardDTO();
+		bdDto.setNum(num);*/
+		try {
+			ar = boarDAO.list(1, 5);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ar;
+	}
+	
+	//xmlTest
+	@Override
+	public BoardDTO xml_view(int num) {
+		BoardDTO bdDto = new BoardDTO();
+		bdDto.setNum(num);
+		try {
+			bdDto = boarDAO.view(bdDto);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return bdDto;
+	}
+	
 	//글삭제
 	@Override
 	public void s_delete(int num) {
@@ -85,5 +134,6 @@ public class BoardServiceImpl implements BoardService {
 			e.printStackTrace();
 		}
 	}
+
 
 }

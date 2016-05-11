@@ -25,6 +25,6 @@
 	<a href="./member/logout.me">LOGOUT</a><br>
 	<a href="./member/delete.me">회원탈퇴</a><br>
 </c:if>
-<a href="./board/list?curPage=1">글목록보기</a><br>
+<a href="./board/list?curPage=1&perPage=10">글목록보기</a><br>
 </body>
 </html>
